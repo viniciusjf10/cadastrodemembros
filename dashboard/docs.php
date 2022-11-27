@@ -1,31 +1,5 @@
-<?php
-if (!isset($_SESSION)){
-    session_start();
-}
-include("conexao.php");
-
-$slctMembrosTotais = "SELECT * FROM user WHERE 1 ORDER BY categoria, nome";
-$selectMembrosTotais = mysqli_query($conn, $slctMembrosTotais);
-$membros = mysqli_fetch_array($selectMembrosTotais);
-//$_SESSION['listaMembros'] = $membros;
-
-$cont = "SELECT COUNT(matriculaRinobot) FROM user WHERE 1 ORDER BY categoria, nome";
-$contProf = mysqli_query($conn, $cont);
-$contDeProfs = mysqli_fetch_array($contProf);
-$result_dadosProfessores = "SELECT * FROM user WHERE 1 ORDER BY categoria, nome";
-$resultado_dadosProfessores = mysqli_query($conn, $result_dadosProfessores);
-$i = 0;
-$profList = array();
-while (($resultado_dadosProfessores) and ($i < $contDeProfs[0])) {
-    $profAux = mysqli_fetch_array($resultado_dadosProfessores);
-    $profList[] = $profAux;
-    $i += 1;
-}
-$_SESSION['listaMembros'] = $profList;
-
-?>
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
     <title>Dashboard Rinobot Team</title>
@@ -35,7 +9,7 @@ $_SESSION['listaMembros'] = $profList;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Dashboard da Rinobot Team">
+    <meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
     <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
     <link rel="icon" type="image/png" href="../images/LogoTopoPagina.jpg" />
 
@@ -373,164 +347,416 @@ $_SESSION['listaMembros'] = $profList;
 
         <div class="app-content pt-3 p-md-3 p-lg-4">
             <div class="container-xl">
+                <div class="row g-3 mb-4 align-items-center justify-content-between">
+                    <div class="col-auto">
+                        <h1 class="app-page-title mb-0">Documentos disponíveis</h1>
+                    </div>
 
-                <h1 class="app-page-title">Listagem de membros:</h1>
+                </div>
+                <!--//row-->
 
-            </div>
-            <div class="container">
-                <!--//container-fluid-->
-                <style type="text/css">
-                table.blueTable {
-                    border: 0px solid #1C6EA4;
-                    background-color: #EEEEEE;
-                    text-align: center;
-                    border-collapse: collapse;
-                }
+                <div class="row g-4">
+                    <div class="col-6 col-md-4 col-xl-3 col-xxl-2">
+                        <div class="app-card app-card-doc shadow-sm h-100">
+                            <div class="app-card-thumb-holder p-3">
+                                <span class="icon-holder">
+                                    <i class="fas fa-file-pdf pdf-file"></i>
+                                </span>
+                                <a class="app-card-link-mask" href="#file-link"></a>
+                            </div>
+                            <div class="app-card-body p-3 has-card-actions">
 
-                table.blueTable td,
-                table.blueTable th {
-                    border: 0px solid #000000;
-                    padding: 4px 10px;
-                }
+                                <h4 class="app-doc-title truncate mb-0"><a href="#file-link">Termo de
+                                        <br>compromisso</a></h4>
+                                <div class="app-doc-meta">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><span class="text-muted">Tipo:</span> PDF</li>
+                                        <li><span class="text-muted">Tamanho:</span> 3MB</li>
+                                    </ul>
+                                </div>
+                                <!--//app-doc-meta-->
 
-                table.blueTable tbody td {
-                    font-size: 16px;
-                    color: #000000;
-                }
+                                <div class="app-card-actions">
+                                    <div class="dropdown">
+                                        <div class="dropdown-toggle no-toggle-arrow" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16"
+                                                class="bi bi-three-dots-vertical" fill="currentColor"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                            </svg>
+                                        </div>
+                                        <!--//dropdown-toggle-->
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#"><svg width="1em" height="1em"
+                                                        viewBox="0 0 16 16" class="bi bi-download me-2"
+                                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd"
+                                                            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                                                    </svg>Download</a></li>
+                                        </ul>
+                                    </div>
+                                    <!--//dropdown-->
+                                </div>
+                                <!--//app-card-actions-->
 
-                table.blueTable tr:nth-child(even) {
-                    background: #5FA44A;
-                }
+                            </div>
+                            <!--//app-card-body-->
 
-                table.blueTable thead {
-                    background: #589845;
-                    border-bottom: 3px solid #000000;
-                }
+                        </div>
+                        <!--//app-card-->
+                    </div>
+                    <!--//col-->
+                    <div class="col-6 col-md-4 col-xl-3 col-xxl-2">
+                        <div class="app-card app-card-doc shadow-sm h-100">
+                            <div class="app-card-thumb-holder p-3">
+                                <span class="icon-holder">
+                                    <i class="fas fa-file-excel excel-file"></i>
+                                </span>
+                                <a class="app-card-link-mask" href="#file-link"></a>
+                            </div>
+                            <div class="app-card-body p-3 has-card-actions">
 
-                table.blueTable thead th {
-                    font-size: 16px;
-                    font-weight: bold;
-                    color: #FFFFFF;
-                    text-align: center;
-                }
+                                <h4 class="app-doc-title truncate mb-0"><a href="#file-link">Listagem de <br>membros</a>
+                                </h4>
+                                <div class="app-doc-meta">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><span class="text-muted">Tipo:</span> Excel</li>
+                                        <li><span class="text-muted">Tamanho:</span> 64KB</li>
+                                    </ul>
+                                </div>
+                                <!--//app-doc-meta-->
 
-                table.blueTable tfoot {
-                    font-size: 16px;
-                    font-weight: bold;
-                    color: #FFFFFF;
-                    background: #D0E4F5;
-                    background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
-                    background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
-                    background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
-                    border-top: 2px solid #444444;
-                }
+                                <div class="app-card-actions">
+                                    <div class="dropdown">
+                                        <div class="dropdown-toggle no-toggle-arrow" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16"
+                                                class="bi bi-three-dots-vertical" fill="currentColor"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                            </svg>
+                                        </div>
+                                        <!--//dropdown-toggle-->
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#"><svg width="1em" height="1em"
+                                                        viewBox="0 0 16 16" class="bi bi-download me-2"
+                                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd"
+                                                            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                                                    </svg>Download</a></li>
+                                        </ul>
+                                    </div>
+                                    <!--//dropdown-->
+                                </div>
+                                <!--//app-card-actions-->
 
-                table.blueTable tfoot td {
-                    font-size: 13px;
-                }
+                            </div>
+                            <!--//app-card-body-->
 
-                table.blueTable tfoot .links {
-                    text-align: right;
-                }
+                        </div>
+                        <!--//app-card-->
+                    </div>
+                    <!--//col-->
+                    <div class="col-6 col-md-4 col-xl-3 col-xxl-2">
+                        <div class="app-card app-card-doc shadow-sm h-100">
+                            <div class="app-card-thumb-holder p-3">
+                                <span class="icon-holder">
+                                    <i class="fas fa-file-excel excel-file"></i>
+                                </span>
+                                <a class="app-card-link-mask" href="#file-link"></a>
+                            </div>
+                            <div class="app-card-body p-3 has-card-actions">
 
-                table.blueTable tfoot .links a {
-                    display: inline-block;
-                    background: #1C6EA4;
-                    color: #FFFFFF;
-                    padding: 2px 8px;
-                    border-radius: 5px;
-                }
-                </style>
-                <table class="blueTable">
-                    <thead>
-                        <tr>
-                            <th>Índice </th>
-                            <th>Matricula Rinobot </th>
-                            <th>Nome</th>
-                            <th>Categoria</th>
-                            <th>Cargo</th>
-                            <th>RG </th>
-                            <th>CPF </th>
-                            <th>Previsão de formatura</th>
-                            <th>Cidade de residência</th>
-                            <th>Exibir todos os dados</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                $numMembros = count($_SESSION['listaMembros']) ;
-                $i = 0;
-                for($i=0; $i< $numMembros;$i++){ 
-                echo('<tr>');
-					echo(utf8_encode('<td class="tg-0lax">')); echo(utf8_encode($i+1)); echo(utf8_encode('</td>'));
-                    echo(utf8_encode('<td class="tg-0lax">')); echo(utf8_encode($_SESSION['listaMembros'][$i]['matriculaRinobot'])); echo(utf8_encode('</td>'));
-                    echo(utf8_encode('<td class="tg-1lax">')); echo(utf8_encode($_SESSION['listaMembros'][$i]['nome'])); echo(utf8_encode('</td>'));
-                    echo(utf8_encode('<td class="tg-1lax">')); echo(utf8_encode($_SESSION['listaMembros'][$i]['categoria'])); echo(utf8_encode('</td>'));
-                    echo(utf8_encode('<td class="tg-1lax">')); echo(utf8_encode($_SESSION['listaMembros'][$i]['cargo'])); echo(utf8_encode('</td>'));
-                    echo(utf8_encode('<td class="tg-1lax">')); echo(utf8_encode($_SESSION['listaMembros'][$i]['RG'])); echo(utf8_encode('</td>'));
-                    echo(utf8_encode('<td class="tg-1lax">')); echo(utf8_encode($_SESSION['listaMembros'][$i]['CPF'])); echo(utf8_encode('</td>'));
-                    echo(utf8_encode('<td class="tg-1lax">')); echo(utf8_encode($_SESSION['listaMembros'][$i]['mesFormatura'])."/".($_SESSION['listaMembros'][$i]['anoFormatura'])); echo(utf8_encode('</td>'));
-                    echo(utf8_encode('<td class="tg-1lax">')); echo(utf8_encode($_SESSION['listaMembros'][$i]['cidadeResidencia'])); echo(utf8_encode('</td>'));					
-					echo(utf8_encode('<td class="tg-1lax">'));?>
+                                <h4 class="app-doc-title truncate mb-0"><a href="#file-link">Listagem de <br>membros
+                                        para <br>transporte</a></h4>
+                                <div class="app-doc-meta">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><span class="text-muted">Tipo:</span> Excel</li>
+                                        <li><span class="text-muted">Tamanho:</span> 64KB</li>
+                                    </ul>
+                                </div>
+                                <!--//app-doc-meta-->
 
-                        <form action="./detalha.php">
-                            <span class="nav-icon">
-                                <button type="submit">
-                                    <svg width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Regular"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <defs>
-                                            <style>
-                                            .cls-1 {
-                                                fill: #41416e;
-                                            }
-                                            </style>
-                                        </defs>
-                                        <title>eye</title>
-                                        <g id="eye-Regular">
-                                            <path id="eye-Regular-2" data-name="eye-Regular" class="cls-1"
-                                                d="M21.229,10.116C19.914,7.925,16.966,4.25,12,4.25S4.086,7.925,2.771,10.116a3.656,3.656,0,0,0,0,3.768C4.086,16.075,7.035,19.75,12,19.75s7.914-3.675,9.229-5.866h0A3.652,3.652,0,0,0,21.229,10.116Zm-1.286,3C18.792,15.031,16.228,18.25,12,18.25s-6.791-3.219-7.943-5.138a2.16,2.16,0,0,1,0-2.224C5.209,8.969,7.773,5.75,12,5.75s6.792,3.219,7.943,5.138A2.155,2.155,0,0,1,19.943,13.112ZM12,7.75A4.25,4.25,0,1,0,16.25,12,4.255,4.255,0,0,0,12,7.75Zm0,7A2.75,2.75,0,1,1,14.75,12,2.752,2.752,0,0,1,12,14.75Z" />
-                                        </g>
-                                    </svg>
-                                </button>
-                            </span>
+                                <div class="app-card-actions">
+                                    <div class="dropdown">
+                                        <div class="dropdown-toggle no-toggle-arrow" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16"
+                                                class="bi bi-three-dots-vertical" fill="currentColor"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                            </svg>
+                                        </div>
+                                        <!--//dropdown-toggle-->
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#"><svg width="1em" height="1em"
+                                                        viewBox="0 0 16 16" class="bi bi-download me-2"
+                                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd"
+                                                            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                                                    </svg>Download</a></li>
+                                        </ul>
+                                    </div>
+                                    <!--//dropdown-->
+                                </div>
+                                <!--//app-card-actions-->
 
-                        </form>
-                        <?php echo(utf8_encode('</td>'));
-                    echo('</tr>');
-                }
-            ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <!--//app-content-->
+                            </div>
+                            <!--//app-card-body-->
 
-        <footer class="app-footer">
-            <div class="container text-center py-3">
-                <small class="copyright">Rinobot Team <br>
-                    Time de Garotas de Programa
-                </small>
+                        </div>
+                        <!--//app-card-->
+                    </div>
+                    <!--//col-->
+                    <div class="col-6 col-md-4 col-xl-3 col-xxl-2">
+                        <div class="app-card app-card-doc shadow-sm h-100">
+                            <div class="app-card-thumb-holder p-3">
+                                <span class="icon-holder">
+                                    <i class="fas fa-file-excel excel-file"></i>
+                                </span>
+                                <a class="app-card-link-mask" href="#file-link"></a>
+                            </div>
+                            <div class="app-card-body p-3 has-card-actions">
 
-            </div>
-        </footer>
-        <!--//app-footer-->
+                                <h4 class="app-doc-title truncate mb-0"><a href="#file-link">Listagem de <br>membros
+                                        para <br>hospedagem</a></h4>
+                                <div class="app-doc-meta">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><span class="text-muted">Tipo:</span> Excel</li>
+                                        <li><span class="text-muted">Tamanho:</span> 64KB</li>
+                                    </ul>
+                                </div>
+                                <!--//app-doc-meta-->
 
-    </div>
-    <!--//app-wrapper-->
+                                <div class="app-card-actions">
+                                    <div class="dropdown">
+                                        <div class="dropdown-toggle no-toggle-arrow" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16"
+                                                class="bi bi-three-dots-vertical" fill="currentColor"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                            </svg>
+                                        </div>
+                                        <!--//dropdown-toggle-->
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#"><svg width="1em" height="1em"
+                                                        viewBox="0 0 16 16" class="bi bi-download me-2"
+                                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd"
+                                                            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                                                    </svg>Download</a></li>
+                                        </ul>
+                                    </div>
+                                    <!--//dropdown-->
+                                </div>
+                                <!--//app-card-actions-->
+
+                            </div>
+                            <!--//app-card-body-->
+
+                        </div>
+                        <!--//app-card-->
+                    </div>
+                    <!--//col-->
+                    <div class="col-6 col-md-4 col-xl-3 col-xxl-2">
+                        <div class="app-card app-card-doc shadow-sm h-100">
+                            <div class="app-card-thumb-holder p-3">
+                                <span class="icon-holder">
+                                    <i class="fas fa-file-powerpoint ppt-file"></i>
+                                </span>
+                                <a class="app-card-link-mask" href="#file-link"></a>
+                            </div>
+                            <div class="app-card-body p-3 has-card-actions">
+
+                                <h4 class="app-doc-title truncate mb-0"><a href="#file-link">Apresentação <br>geral </a>
+                                </h4>
+                                <div class="app-doc-meta">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><span class="text-muted">Tipo:</span> PPT</li>
+                                        <li><span class="text-muted">Tamanho:</span> 5.3MB</li>
+                                    </ul>
+                                </div>
+                                <!--//app-doc-meta-->
+
+                                <div class="app-card-actions">
+                                    <div class="dropdown">
+                                        <div class="dropdown-toggle no-toggle-arrow" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16"
+                                                class="bi bi-three-dots-vertical" fill="currentColor"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                            </svg>
+                                        </div>
+                                        <!--//dropdown-toggle-->
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#"><svg width="1em" height="1em"
+                                                        viewBox="0 0 16 16" class="bi bi-download me-2"
+                                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd"
+                                                            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                                                    </svg>Download</a></li>
+                                        </ul>
+                                    </div>
+                                    <!--//dropdown-->
+                                </div>
+                                <!--//app-card-actions-->
+
+                            </div>
+                            <!--//app-card-body-->
+
+                        </div>
+                        <!--//app-card-->
+                    </div>
+                    <!--//col-->
+
+                    <div class="col-6 col-md-4 col-xl-3 col-xxl-2">
+                        <div class="app-card app-card-doc shadow-sm h-100">
+                            <div class="app-card-thumb-holder p-3">
+                                <span class="icon-holder">
+                                    <i class="fas fa-file-powerpoint ppt-file"></i>
+                                </span>
+                                <a class="app-card-link-mask" href="#file-link"></a>
+                            </div>
+                            <div class="app-card-body p-3 has-card-actions">
+
+                                <h4 class="app-doc-title truncate mb-0"><a href="#file-link">Apresentação <br>categorias
+                                    </a></h4>
+                                <div class="app-doc-meta">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><span class="text-muted">Tipo:</span> PPT</li>
+                                        <li><span class="text-muted">Tamanho:</span> 5.3MB</li>
+                                    </ul>
+                                </div>
+                                <!--//app-doc-meta-->
+
+                                <div class="app-card-actions">
+                                    <div class="dropdown">
+                                        <div class="dropdown-toggle no-toggle-arrow" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16"
+                                                class="bi bi-three-dots-vertical" fill="currentColor"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                            </svg>
+                                        </div>
+                                        <!--//dropdown-toggle-->
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#"><svg width="1em" height="1em"
+                                                        viewBox="0 0 16 16" class="bi bi-download me-2"
+                                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd"
+                                                            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                                                    </svg>Download</a></li>
+                                        </ul>
+                                    </div>
+                                    <!--//dropdown-->
+                                </div>
+                                <!--//app-card-actions-->
+
+                            </div>
+                            <!--//app-card-body-->
+
+                        </div>
+                        <!--//app-card-->
+                    </div>
+                    <!--//col-->
+
+                    <div class="col-6 col-md-4 col-xl-3 col-xxl-2">
+                        <div class="app-card app-card-doc shadow-sm h-100">
+                            <div class="app-card-thumb-holder p-3">
+                                <span class="icon-holder">
+                                    <i class="fas fa-file-powerpoint ppt-file"></i>
+                                </span>
+                                <a class="app-card-link-mask" href="#file-link"></a>
+                            </div>
+                            <div class="app-card-body p-3 has-card-actions">
+
+                                <h4 class="app-doc-title truncate mb-0"><a href="#file-link">Apresentação <br>gestão
+                                    </a></h4>
+                                <div class="app-doc-meta">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><span class="text-muted">Tipo:</span> PPT</li>
+                                        <li><span class="text-muted">Tamanho:</span> 5.3MB</li>
+                                    </ul>
+                                </div>
+                                <!--//app-doc-meta-->
+
+                                <div class="app-card-actions">
+                                    <div class="dropdown">
+                                        <div class="dropdown-toggle no-toggle-arrow" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16"
+                                                class="bi bi-three-dots-vertical" fill="currentColor"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                            </svg>
+                                        </div>
+                                        <!--//dropdown-toggle-->
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#"><svg width="1em" height="1em"
+                                                        viewBox="0 0 16 16" class="bi bi-download me-2"
+                                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd"
+                                                            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                                                    </svg>Download</a></li>
+                                        </ul>
+                                    </div>
+                                    <!--//dropdown-->
+                                </div>
+                                <!--//app-card-actions-->
+
+                            </div>
+                            <!--//app-card-body-->
+
+                        </div>
+                        <!--//app-card-->
+                    </div>
+                    <!--//col-->
+
+                    <footer class="app-footer">
+                        <div class="container text-center py-3">
+                            <small class="copyright">Rinobot Team <br>
+                                Time de Garotas de Programa
+                            </small>
+
+                        </div>
+                    </footer>
+                    <!--//app-footer-->
+
+                </div>
+                <!--//app-wrapper-->
+
+                <!-- Javascript -->
+                <script src="assets/plugins/popper.min.js"></script>
+                <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
 
-
-    <!-- Javascript -->
-    <script src="assets/plugins/popper.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Charts JS -->
-    <script src="assets/plugins/chart.js/chart.min.js"></script>
-    <!-- <script src="assets/js/index-charts.js"></script>  -->
-    <script src="assets/js/charts-demo.js"></script>
-
-    <!-- Page Specific JS -->
-    <script src="assets/js/app.js"></script>
+                <!-- Page Specific JS -->
+                <script src="assets/js/app.js"></script>
 
 </body>
 

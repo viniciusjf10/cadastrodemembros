@@ -21,7 +21,7 @@ if(isset($_POST['nomeCompleto'])){
 }
 
 if($nomeCompleto == "Marcos Vinícius da Silva"){
-    $nomeCompleto = "Monarcos Vinícius da Silva";
+    $nomeCompleto = utf8_decode("Monarcos Vinícius da Silva");
 }
 
 if(isset($_POST['matriculaUFJF'])){
